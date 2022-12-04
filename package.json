@@ -1,3 +1,6 @@
 {
-  "name": "hardhat-project"
+  "name": "ownchain",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
