@@ -1,4 +1,5 @@
 import os
+import json
 from web3 import Web3
 
 from dotenv import load_dotenv
@@ -13,7 +14,26 @@ def connect_to_contract():
     return
 
 
+# function to get the contract address
+def get_contract_address():
+    return os.getenv("CONTRACT_ADDRESS")
+
+
+# function to get the contract ABI
+def get_contract_abi():
+    abi = json.loads(os.getenv("CONTRACT_ABI"))
+    return abi
+
+# function to get the contract
+def get_contract():
+    w3 = connect_to_contract()
+    contract_address = get_contract_address()
+    contract_abi = get_contract_abi()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    return contract
+
 
 if __name__=="__main__":
-    w3 = connect_to_contract()
-    print(w3.isConnected())
+    contract = get_contract()
+    print(contract)
+    
